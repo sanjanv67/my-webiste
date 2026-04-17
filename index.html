@@ -701,17 +701,17 @@ var SITE_CONFIG = {
   // ▼▼▼  PASTE YOUR CLAUDE KEY HERE  ▼▼▼
   // Get it at: console.anthropic.com → API Keys → Create Key
   // Looks like: sk-ant-api03-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-  CLAUDE_KEY: 'PASTE_YOUR_CLAUDE_KEY_HERE',
+  CLAUDE_KEY: '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',
   // ▲▲▲  CLAUDE KEY  ▲▲▲
 
   // ▼▼▼  PASTE YOUR GRANTS.GOV KEY HERE  ▼▼▼
   // Get it at: simpler.grants.gov/developer → enter email → key arrives instantly
-  GRANTS_GOV_KEY: 'PASTE_YOUR_GRANTSGOV_KEY_HERE',
+  GRANTS_GOV_KEY: 'la3l5AKyIbKJqoBVOGnW0Mpx4',
   // ▲▲▲  GRANTS.GOV KEY  ▲▲▲
 
   // ▼▼▼  PASTE YOUR COLLEGE SCORECARD KEY HERE  ▼▼▼
   // Get it at: api.data.gov/signup → enter email → key arrives instantly
-  SCORECARD_KEY: 'PASTE_YOUR_SCORECARD_KEY_HERE',
+  SCORECARD_KEY: 'aeQG6U8XiAeYd0m2W7DPgnaNhwUmANvEzzOi9wyM',
   // ▲▲▲  SCORECARD KEY  ▲▲▲
 
 };
@@ -928,6 +928,14 @@ const S = {
   set: (k,v) => localStorage.setItem(k, JSON.stringify(v)),
   del: k => localStorage.removeItem(k)
 };
+// Sync SITE_CONFIG keys now that S is defined
+(function(){
+  if(typeof SITE_CONFIG==='undefined') return;
+  var sk = SITE_CONFIG;
+  if(sk.CLAUDE_KEY     && sk.CLAUDE_KEY.indexOf('PASTE')<0)     S.set('sm_apikey', sk.CLAUDE_KEY);
+  if(sk.GRANTS_GOV_KEY && sk.GRANTS_GOV_KEY.indexOf('PASTE')<0) S.set('sm_ggkey',  sk.GRANTS_GOV_KEY);
+  if(sk.SCORECARD_KEY  && sk.SCORECARD_KEY.indexOf('PASTE')<0)  S.set('sm_cskey',  sk.SCORECARD_KEY);
+})();
 
 // ═══════════════════════════════════════════════════════════
 // STATE
